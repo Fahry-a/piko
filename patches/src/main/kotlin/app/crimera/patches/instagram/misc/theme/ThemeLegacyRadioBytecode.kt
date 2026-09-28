@@ -313,11 +313,11 @@ private fun installLegacyOnResumeThemeSync(
                     null
                 }
             }
-    if (selectedIdReads.size != 1) {
-        throw PatchException(
-            "Expected one selected RadioItem id read, found ${selectedIdReads.size}",
-        )
-    }
+    // arm32 reads the item id an extra time while building display names; the
+    // value fed to the row constructor is the last read before it.
+    val selectedIdIndex =
+        selectedIdReads.maxOrNull()
+            ?: throw PatchException("Expected one selected RadioItem id read, found 0")
 
     val packedIdsRegister =
         method.findFreeRegister(
@@ -328,7 +328,7 @@ private fun installLegacyOnResumeThemeSync(
         )
     val selectionTempRegister =
         method.findFreeRegister(
-            selectedIdReads.single() + 1,
+            selectedIdIndex + 1,
             selectedIdRegister,
         )
     val firstParameter = parameterRegisterStart(method)
@@ -360,7 +360,6 @@ private fun installLegacyOnResumeThemeSync(
         move-result-object v$listenerRegister
         """.trimIndent(),
     )
-    val selectedIdIndex = selectedIdReads.single()
     method.addInstructions(
         selectedIdIndex + 1,
         """
