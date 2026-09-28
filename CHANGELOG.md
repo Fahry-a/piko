@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/Fahry-a/piko/compare/v1.0.1...v1.0.2) (2026-09-28)
+
+### 🐛 Bug Fixes
+
+* **instagram:** accept non-contiguous RadioItem adds in legacy theme onCreate on arm32 ([d470cee](https://github.com/Fahry-a/piko/commit/d470ceec7a1de909f30279b5f730995412d2438b))
+
 ## [1.0.1](https://github.com/Fahry-a/piko/compare/v1.0.0...v1.0.1) (2026-09-28)
 
 ### 🐛 Bug Fixes
