@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/Fahry-a/piko/compare/v1.0.2...v1.0.3) (2026-09-28)
+
+### 🐛 Bug Fixes
+
+* **instagram:** use last selected RadioItem id read in legacy theme sync on arm32 ([6073168](https://github.com/Fahry-a/piko/commit/607316874d28543f7b1fe96e6ba2d1122e56767f))
+
 ## [1.0.2](https://github.com/Fahry-a/piko/compare/v1.0.1...v1.0.2) (2026-09-28)
 
 ### 🐛 Bug Fixes
