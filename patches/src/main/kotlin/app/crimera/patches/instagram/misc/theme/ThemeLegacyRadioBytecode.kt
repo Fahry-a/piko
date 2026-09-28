@@ -130,16 +130,13 @@ private fun deriveLegacyRadioItemType(method: MutableMethod): String {
                 addReference = addReference,
             )
         }
+    // arm32 guards the third add behind an SDK_INT check, so the three adds
+    // are not instruction-contiguous; group by target list/item instead.
     val groups =
         candidates
             .groupBy { Triple(it.listRegister, it.itemType, it.addReference.toString()) }
             .values
-            .filter { group ->
-                group.size == 3 &&
-                    group.sortedBy(AddCandidate::index).zipWithNext().all { (first, second) ->
-                        second.index == first.index + 2
-                    }
-            }
+            .filter { group -> group.size == 3 }
     if (groups.size != 1) {
         throw PatchException(
             "Expected one legacy onCreate sequence with three RadioItem List.add calls, " +
