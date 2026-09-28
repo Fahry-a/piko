@@ -26,7 +26,14 @@ val developerOptionsEntity =
                 GetAllExperimentsClassExtension.changeFirstString(getAllExperimentsMethodName)
             }
 
-            ExperimentsGetMobileConfigSpecifier.apply {
+            // The arm64 and arm32 builds inline different const-strings into the
+            // mobile-config-specifier getter; fall back to the arm32 fingerprint.
+            val mobileConfigSpecifier =
+                ExperimentsGetMobileConfigSpecifier.matchOrNull()
+                    ?.let { ExperimentsGetMobileConfigSpecifier }
+                    ?: ExperimentsGetMobileConfigSpecifierArm32
+
+            mobileConfigSpecifier.apply {
                 GetExperimentItemHelperClassExtension.changeFirstString(classNameToExtension(classDef.type))
                 method.apply {
                     val getUniversalIdInstructionData = getInstruction(indexOfFirstInstruction(Opcode.INVOKE_STATIC)).methodExtractor()

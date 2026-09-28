@@ -39,3 +39,10 @@ internal object ExperimentsValueBuilderFingerprint : Fingerprint(
 internal object ExperimentsGetMobileConfigSpecifier : Fingerprint(
     strings = listOf("ExperimentParameter", "Failed to get config key with specifier:%d"),
 )
+
+// arm32 (ARMEABI_V7A, 384510826) counterpart: the same getter has no
+// "ExperimentParameter" const-string. "param_specifier" is unique to it
+// (single const-string usage across the whole app).
+internal object ExperimentsGetMobileConfigSpecifierArm32 : Fingerprint(
+    strings = listOf("param_specifier", "Failed to get config key with specifier:%d"),
+)
