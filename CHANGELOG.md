@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/Fahry-a/piko/compare/v1.0.0...v1.0.1) (2026-09-28)
+
+### 🐛 Bug Fixes
+
+* **instagram:** fallback fingerprint for mobile-config-specifier getter on arm32 ([e2e9c89](https://github.com/Fahry-a/piko/commit/e2e9c89e9501f8238a137879743fecd6016cdc26))
+
 ## 1.0.0 (2026-09-28)
 
 ### ⚠ BREAKING CHANGES
